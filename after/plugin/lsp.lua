@@ -8,6 +8,20 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
+
+local lspconfig = require("lspconfig")
+
+lspconfig.lua_ls.setup{
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+}
+
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   -- Replace the language servers listed here 
