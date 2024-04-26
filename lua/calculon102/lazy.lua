@@ -1,50 +1,55 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
+local plugins = {
     -- My own cheat-sheet
-    use 'calculon102/cheatsheet.nvim'
+     'calculon102/cheatsheet.nvim',
 
     -- Fuzzy finder, especially for files
-    use {
+     {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
         -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+        dependencies = { { 'nvim-lua/plenary.nvim' } }
+    },
 
     -- Theme
-    use({
+    {
         'rose-pine/neovim',
-        as = 'rose-pine',
+        name = 'rose-pine',
         config = function()
             vim.cmd('colorscheme rose-pine')
         end
-    })
+    },
 
     -- File explorer
-    use('nvim-tree/nvim-tree.lua')
-    use('nvim-tree/nvim-web-devicons')
+    'nvim-tree/nvim-tree.lua',
+    'nvim-tree/nvim-web-devicons',
 
     -- Formatter
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use('nvim-treesitter/playground')
+    {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    'nvim-treesitter/playground',
 
     -- TODO map keys
-    use('mbbill/undotree')
+    'mbbill/undotree',
 
     -- Git integration with "Git"-command
-    use('tpope/vim-fugitive')
+    'tpope/vim-fugitive',
 
     -- Code completions and Formatter
-    use {
+     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
-        requires = {
+        dependencies = {
             --- Uncomment the two plugins below if you want to manage the language servers from neovim
             --- and read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
             { 'williamboman/mason.nvim' },
@@ -59,4 +64,6 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
-end)
+}
+
+require("lazy").setup(plugins)
