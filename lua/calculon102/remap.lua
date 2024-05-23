@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>fb", vim.cmd.Ex)
+-- Write book modus
+vim.keymap.set("n", "<leader>wb", function ()
+  vim.wo.wrap = true  -- Enable line wrap
+  vim.o.spell = true  -- Enable spell check
+  vim.o.spelllang = 'de_de'  -- Set spell check language to German
+end, { noremap = true, silent = true })
 
 -- Nvim-Tree
 -- Manual https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt#L10
@@ -16,6 +21,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set("n", "<leader>fb", vim.cmd.Ex)
 
 -- Move marked block up / down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -47,9 +53,3 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
