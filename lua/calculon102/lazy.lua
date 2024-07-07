@@ -15,18 +15,12 @@ local plugins = {
     -- My own cheat-sheet
     'calculon102/cheatsheet.nvim',
 
-    -- Auto close bracket-pairs
+    -- Auto close brackets
     {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = true,
-        -- use opts = {} for passing setup options
-        -- this is equalent to setup({}) function
-        opts = {
-            enable_moveright = false,
-        }
+        'm4xshen/autoclose.nvim',
     },
 
+    -- Auto close HTML-tags
     {
         'windwp/nvim-ts-autotag',
         opts = {},
