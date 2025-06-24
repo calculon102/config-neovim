@@ -74,7 +74,14 @@ local plugins = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'L3MON4D3/LuaSnip' },
         }
-    }
+    },
+
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
+
+    'skwee357/nvim-prose',
 }
 
 require("lazy").setup(plugins)
