@@ -50,9 +50,6 @@ local plugins = {
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     'nvim-treesitter/playground',
 
-    -- TODO map keys
-    'mbbill/undotree',
-
     -- Git integration with "Git"-command
     'tpope/vim-fugitive',
 
@@ -81,7 +78,27 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
 
+    -- Word-Count
     'skwee357/nvim-prose',
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    }
 }
 
 require("lazy").setup(plugins)
