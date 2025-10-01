@@ -42,6 +42,11 @@ local plugins = {
         end
     },
 
+    {
+        "mason-org/mason.nvim",
+        opts = {}
+    },
+
     -- File explorer
     'nvim-tree/nvim-tree.lua',
     'nvim-tree/nvim-web-devicons',
@@ -52,26 +57,6 @@ local plugins = {
 
     -- Git integration with "Git"-command
     'tpope/vim-fugitive',
-
-    -- Code completions and Formatter
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        dependencies = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
-            --- and read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-        }
-    },
 
     {
         'nvim-lualine/lualine.nvim',
