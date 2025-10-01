@@ -52,8 +52,13 @@ local plugins = {
     'nvim-tree/nvim-web-devicons',
 
     -- Formatter
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    'nvim-treesitter/playground',
+
+    {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        branch = 'main',
+        build = ':TSUpdate'
+    },
 
     -- Git integration with "Git"-command
     'tpope/vim-fugitive',
