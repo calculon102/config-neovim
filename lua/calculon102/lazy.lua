@@ -15,6 +15,9 @@ local plugins = {
     -- My own cheat-sheet
     'calculon102/cheatsheet.nvim',
 
+    -- Theme
+    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
+
     -- Auto close brackets
     {
         'm4xshen/autoclose.nvim',
@@ -28,18 +31,21 @@ local plugins = {
 
     -- Fuzzy finder, especially for files
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.6',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
+        "ibhagwan/fzf-lua",
+        -- optional for icon support
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        -- or if using mini.icons/mini.nvim
+        -- dependencies = { "nvim-mini/mini.icons" },
+        opts = {}
     },
 
     -- Theme
     {
         'rose-pine/neovim',
         name = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
+        --         config = function()
+        --             vim.cmd('colorscheme rose-pine')
+        --         end
     },
 
     {

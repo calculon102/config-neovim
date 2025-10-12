@@ -15,13 +15,18 @@ vim.keymap.set("n", "<leader>ts", ":NvimTreeFindFile<CR>")
 vim.keymap.set("n", "<leader>tr", ":NvimTreeRefresh<CR>")
 vim.keymap.set("n", "<leader>tc", ":NvimTreeClose<CR>")
 
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set("n", "<leader>fb", vim.cmd.Ex)
+-- Fuzzy finder
+require "fzf-lua".setup { defaults = { git_icons = false } }
+
+vim.api.nvim_set_keymap("n", "<C-\\>", [[<Cmd>lua require"fzf-lua".buffers()<CR>]], {})
+vim.api.nvim_set_keymap("n", "<C-k>", [[<Cmd>lua require"fzf-lua".builtin()<CR>]], {})
+vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require"fzf-lua".files()<CR>]], {})
+vim.api.nvim_set_keymap("n", "<C-l>", [[<Cmd>lua require"fzf-lua".live_grep()<CR>]], {})
+vim.api.nvim_set_keymap("n", "<C-g>", [[<Cmd>lua require"fzf-lua".grep_project()<CR>]], {})
+vim.api.nvim_set_keymap("n", "<F1>", [[<Cmd>lua require"fzf-lua".help_tags()<CR>]], {})
+
+require("fzf-lua").utils.info(
+    "|<C-\\> buffers|<C-p> files|<C-g> grep|<C-l> live grep|<C-k> builtin|<F1> help|")
 
 -- Move marked block up / down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
