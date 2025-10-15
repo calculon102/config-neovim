@@ -8,7 +8,7 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 require("nvim-tree").setup({
     view = {
-        side = "right"
+        side = "left"
     },
     filters = {
         dotfiles = true
