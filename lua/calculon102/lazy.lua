@@ -48,6 +48,7 @@ local plugins = {
         --         end
     },
 
+    -- Package Manager for LSPs, Formatters and DAPs
     {
         "mason-org/mason.nvim",
         opts = {}
@@ -71,6 +72,7 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
 
+    -- Autocompletion
     {
         'saghen/blink.cmp',
         -- optional: provides snippets for the snippet source
@@ -116,7 +118,10 @@ local plugins = {
             fuzzy = { implementation = "prefer_rust_with_warning" }
         },
         opts_extend = { "sources.default" }
-    }
+    },
+
+    -- Debugger
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
 }
 
 require("lazy").setup(plugins)
